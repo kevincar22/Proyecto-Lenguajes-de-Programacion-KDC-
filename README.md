@@ -1,6 +1,6 @@
 # README
 
-## Ejecución de la Aplicación PHP con Node.js
+## Ejecución de la Aplicación PHP con Node.js y SQL server
 
 Este README describe los pasos necesarios para ejecutar una aplicación PHP utilizando Node.js como servidor.
 
@@ -34,7 +34,7 @@ npm install
 ```
 
 3. **Levantar el proyecto**
-   Ejecuta el siguiente comando
+   Ejecuta los siguiente comandos en consolas distintas
 ```sh
 npm run dev
 ```
