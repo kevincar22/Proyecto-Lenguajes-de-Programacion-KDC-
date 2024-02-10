@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\MateriaController;
 
 /*use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
@@ -22,3 +23,5 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/materias', [MateriaController::class, 'index'])->name('materia.index');
+Route::get('/materias/{materia}', [MateriaController::class, 'show'])->name('materia.show');
