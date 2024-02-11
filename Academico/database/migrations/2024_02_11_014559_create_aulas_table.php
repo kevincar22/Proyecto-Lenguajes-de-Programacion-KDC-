@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('codigo',60);
             $table->string('tema',100)->nullable();
             $table->date('FechaInicio')->nullable();
-            $table->bigInteger('IdAsignatura')->unsigned()->index();
-            $table->foreign('IdAsignatura')->references('id')->on('asignaturas')->onDelete('no action');
+            $table->bigInteger('IdMateria')->unsigned()->index();
+            $table->foreign('IdMateria')->references('id')->on('materias')->onDelete('no action');
             $table->bigInteger('IdProfesor')->unsigned()->index();
             $table->foreign('IdProfesor')->references('id')->on('profesors')->onDelete('cascade');
             $table->timestamps();

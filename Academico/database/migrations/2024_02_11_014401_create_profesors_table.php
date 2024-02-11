@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('nombre',60);
             $table->string('cedula',10);
-            $table->bigInteger('IdAsignatura')->unsigned()->index();
-            $table->foreign('IdAsignatura')->references('id')->on('asignaturas')->onDelete('cascade');
+            $table->bigInteger('IdMateria')->unsigned()->index();
+            $table->foreign('IdMateria')->references('id')->on('materias')->onDelete('cascade');
             $table->timestamps();
         });
     }

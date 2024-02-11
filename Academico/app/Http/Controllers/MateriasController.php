@@ -2,20 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Asignaturas;
+use App\Models\Materias;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
 
-class AsignaturasController extends Controller
+class MateriassController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $asignaturas = DB::table('Asignaturas')->get();
-        return view('asignatura.index', ['asignaturas' => $asignaturas]);
+        $asignaturas = DB::table('Materias')->get();
+        return view('materias.index', ['materias' => $asignaturas]);
     }
 
     /**
@@ -36,7 +36,7 @@ class AsignaturasController extends Controller
             'descripcion' => 'required',
         ]);
         Asignatura::create($request->all());
-        return redirect()->route('asignatura.index')->with('success', 'asignatura creado con exito');
+        return redirect()->route('materias.index')->with('success', 'materias creado con exito');
 
     }
 
