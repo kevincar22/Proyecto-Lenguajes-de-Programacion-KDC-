@@ -28,9 +28,7 @@ class CreateAulaRequest extends FormRequest{
         return [
             'codigo' => ['required','string','max:60'],
             'idasignatura' => ['required'],
-            'idprofesor' => ['required','string','max:255', Rule::unique('Aula')->where(function ($query) {
-                return $query->where('idprofesor', $this->idprofesor);
-            })],
+            'idprofesor' => ['required'],
         ];
     
     }
@@ -38,7 +36,6 @@ class CreateAulaRequest extends FormRequest{
     public function messages()
     {
         return [
-            'nombre.required' => 'El campo nombre es requerido',
             'descripcion.required' => 'El campo descripcion es requerido',
             'codigo.required' => 'El campo codigo es requerido',
             'codigo.unique' => 'El codigo ya existe',
@@ -47,9 +44,10 @@ class CreateAulaRequest extends FormRequest{
 
     public function createAula(){
         $Aula = new Aula();
-        $Aula->nombre = $this->nombre;
-        $Aula->descripcion = $this->descripcion;
         $Aula->codigo = $this->codigo;
+        $Aula->idasignatura = $this->idasignatura;
+        $Aula->idprofesor = $this->idprofesor;
+
         $Aula->save();
     }
 

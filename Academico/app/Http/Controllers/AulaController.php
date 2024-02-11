@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aula;
+use App\Http\Requests\CreateAulaRequest;
+use App\Http\Requests\UpdateAulaRequest;
 use Illuminate\Http\Request;
 
 class AulaController extends Controller
@@ -13,30 +15,7 @@ class AulaController extends Controller
     public function index()
     {
         $aulas = Aula::all();
-        return view('Aulas.index', compact('aulas'));        
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(CreateAulaRequest $request)
-    {
-
-        // $request->validate([
-        //     'codigo' => 'required',
-        // ]);
-        //Aula::create($request->all());
-        $request->createAula();
-        return redirect()->route('Aulas.index')->with('success', 'aula creada con exito');
-
-    }
-
-        /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return $this->form('Aulas.create', new Aula);
+        return view('aula.index', compact('aulas'));        
     }
 
     /**
@@ -48,28 +27,73 @@ class AulaController extends Controller
     }
 
     /**
+     * Store a newly created resource in storage.
+     */
+    public function store(CreateAulaRequest $request)
+    {
+        $request->createAula();
+        return redirect()->route('Aulas.index');
+    }
+
+        /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return $this->form('aula.create', new Aula);
+    }
+
+
+    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
         $aula = Aula::find($id);
-        return $this->form('Aulas.edit', $aula);
+        return $this->form('aula.edit', $aula);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Aula $aula)
+    public function update(UpdateAulaRequest $request, Aula $aula)
     {
-        $request->updateAula($Aula);
+        $request->updateAula($aula);
         return redirect()->route('Aulas.index');
+    }
+
+
+    public function trash(Aula $aula)
+    {
+        $aula->delete();
+        return redirect()->route('materia.index');
+    }
+
+    public function form($view, Aula $Aula)
+    {
+        return view($view, [
+            "aula" => $Aula
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Aula $aula)
+    public function destroy($id)
     {
-        //
+        $aula = Aula::with('profesores', 'materias')->find($id);
+
+        if (!$aula) {
+            return redirect()->route('Aulas.index')->with('error', 'La aula no existe.');
+        }
+
+        if ($aula->profesores->isNotEmpty() and $aula->materias->isNotEmpty()) {
+            // Si la materia está asignada a algún profesor, redirige con un mensaje de error
+            return redirect()->route('Aulas.index')->with('error', 'Esta aula está asignada a un profesor/materia y no puede ser eliminada.');
+        }
+
+        // Si no está asignada a ningún profesor, procede a eliminar
+        $aula->delete();
+        return redirect()->route('Aulas.index')->with('success', 'Aula eliminada con éxito.');
     }
 }

@@ -22,8 +22,8 @@
                     <td>{{ $mat->descripcion }}</td>
                     <td>
                         <div class="row-container">
-                            <a href="{{ route('aula.edit', $mat->idaula) }}" class="btn btn-primary">Editar</a>
-                            <form action="{{ route('aula.destroy', $mat->idmateria) }}" method="POST" style="margin: 0px">
+                            <a href="{{ route('Aulas.edit', $mat->idaula) }}" class="btn btn-primary">Editar</a>
+                            <form action="{{ route('Aulas.destroy', $mat->idaula) }}" method="POST" style="margin: 0px">
                                 @csrf
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Eliminar</button>

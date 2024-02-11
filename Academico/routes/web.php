@@ -1,6 +1,6 @@
 <?php
 use App\Http\Controllers\MateriaController;
-
+use App\Http\Controllers\AulaController;
 /*use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -8,7 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfesorController;
-use App\Http\Controllers\AulaController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -40,11 +40,15 @@ Route::resource('Aulas', AulaController::class);*/
 Route::resource('Profesor', ProfesorController::class);
 Route::resource('Aulas', AulaController::class);
 
+// Route::get('/Aulas', [AulaController::class, 'index'])->name('Aulas.index');
+// Route::get('/Aulas/create', [AulaController::class, 'create'])->name('Aulas.create');
+// Route::post('/Aulas', [AulaController::class, 'store']);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/materias/nuevo', [MateriaController::class, 'create'])->name('materia.create');
 
+Route::get('/materias/nuevo', [MateriaController::class, 'create'])->name('materia.create');
 Route::post('/materias', [MateriaController::class, 'store']);
 Route::get('/materias', [MateriaController::class, 'index'])->name('materia.index');
 Route::get('/materias/{materia}', [MateriaController::class, 'show'])->name('materia.show');

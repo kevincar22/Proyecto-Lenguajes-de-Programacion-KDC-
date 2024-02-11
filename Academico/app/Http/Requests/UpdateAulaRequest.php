@@ -26,7 +26,7 @@ class UpdateAulaRequest extends FormRequest{
      public function rules()
     {
         return [
-            'codigo' => ['required','string','max:60', Rule::unique('Aula')->ignore($this->Aula)],
+            'codigo' => ['required','string','max:60', Rule::unique('aula')->ignore($this->aula)],
             'idasignatura' => ['required'],
             'idprofesor' => ['nullable'],
             
@@ -43,12 +43,13 @@ class UpdateAulaRequest extends FormRequest{
     }
 
     public function updateAula(Aula $Aula){
+        
         $Aula->codigo = $this->codigo;
         $Aula->idasignatura = $this->idasignatura;
         $Aula->idprofesor = $this->idprofesor;
         $Aula->save();
     
-        return redirect()->route('Aula.index');
+        return redirect()->route('Aulas.index');
     
     }
 }
