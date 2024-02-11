@@ -7,7 +7,6 @@ use App\Http\Controllers\Auth\RegisterController;
 
 */
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\MateriassController;
 use App\Http\Controllers\ProfesorController;
 use App\Http\Controllers\AulaController;
 
@@ -34,10 +33,21 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::resource('Materias', MateriassController::class);
+/*Route::resource('Materias', MateriassController::class);
+Route::resource('Profesor', ProfesorController::class);
+Route::resource('Aulas', AulaController::class);*/
+
 Route::resource('Profesor', ProfesorController::class);
 Route::resource('Aulas', AulaController::class);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/materias/nuevo', [MateriaController::class, 'create'])->name('materia.create');
+
+Route::post('/materias', [MateriaController::class, 'store']);
+Route::get('/materias', [MateriaController::class, 'index'])->name('materia.index');
+Route::get('/materias/{materia}', [MateriaController::class, 'show'])->name('materia.show');
+Route::get('/materias/{materia}/editar', [MateriaController::class, 'edit'])->name('materia.edit');
+Route::put('/materias/{materia}', [MateriaController::class, 'update'])->name('materia.update');
+Route::delete('/materias/{id}', [MateriaController::class, 'destroy'])->name('materia.destroy');
