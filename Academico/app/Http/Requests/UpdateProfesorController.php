@@ -6,7 +6,8 @@ use App\Models\Profesor;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateProfesorRequest extends FormRequest{
+class UpdateProfesorRequest extends FormRequest
+{
     /**
      * Determine if the user is authorized to make this request.
      *
@@ -23,12 +24,12 @@ class UpdateProfesorRequest extends FormRequest{
      * @return array
      */
 
-     public function rules()
+    public function rules()
     {
         return [
-            'nombre' => ['required','string','max:60'],
+            'nombre' => ['required', 'string', 'max:60'],
             'cedula' => ['required', Rule::unique('Profesor')->ignore($this->Profesor)],
-            'idasignatura' => ['required'],    
+            'idasignatura' => ['required'],
         ];
     }
 
@@ -41,7 +42,13 @@ class UpdateProfesorRequest extends FormRequest{
         ];
     }
 
-    public function updateProfesor(Profesor $Profesor){
+    public function updateProfesor(Profesor $profesor)
+    {
+        $profesor->update($this->validated());
+        return redirect()->route('Profesor.index');
+    }
+
+    /*public function updateProfesor(Profesor $Profesor){
         $Profesor->nombre = $this->nombre;
         $Profesor->cedula = $this->cedula;
         $Profesor->idasignatura = $this->idasignatura;
@@ -49,5 +56,5 @@ class UpdateProfesorRequest extends FormRequest{
     
         return redirect()->route('Profesor.index');
     
-    }
+    }*/
 }

@@ -20,6 +20,6 @@ class Profesor extends Model
 
     public function materia()
     {
-        return $this->belongsTo(Materia::class, 'idasignatura', 'idmateria');
+        return $this->belongsTo(Materia::class, 'idasignatura');
     }
 }

@@ -12,10 +12,10 @@
       </a>
     </div>
     <div class="col-md-3">
-      <a href="/profesor" class="card mb-4 shadow-sm custom-card">
+      <a href="{{ route('Profesor.index') }}" class="card mb-4 shadow-sm custom-card">
         <div class="card-body text-center">
           <i class="fas fa-chalkboard-teacher fa-3x icono-gris"></i>
-          <h5 class="card-title mt-3 letra-gris">Profesor</h5>
+          <h5 class="card-title mt-3 letra-gris">{{ __('Profesor') }}</h5>
         </div>
       </a>
     </div>

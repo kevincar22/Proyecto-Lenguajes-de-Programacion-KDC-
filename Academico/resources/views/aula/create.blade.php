@@ -7,7 +7,7 @@
         @include('shared._errors')
         @slot('header', 'Nueva Aula')
 
-        <form method="POST" action="{{url("Aulas")}}">
+        <form method="POST" action="{{route("Aulas.store")}}">
             @include('aula._fields')
 
             <div class="form-group d-flex justify-content-between">

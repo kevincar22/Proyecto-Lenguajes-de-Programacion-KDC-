@@ -36,9 +36,10 @@ class CreateAulaRequest extends FormRequest{
     public function messages()
     {
         return [
-            'descripcion.required' => 'El campo descripcion es requerido',
             'codigo.required' => 'El campo codigo es requerido',
             'codigo.unique' => 'El codigo ya existe',
+            'idprofesor.required' => 'El campo de profesor está vacio',
+            'idasignatura.required' => 'El campo de materia está vacio'
         ];
     }
 

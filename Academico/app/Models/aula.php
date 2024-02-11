@@ -15,10 +15,10 @@ class Aula extends Model
     protected $fillable = [
         'codigo',
         'idasignatura',
-        'idprofesor',
+        'idprofesor'
     ];
 
-    public function profesores()
+    /*public function profesores()
     {
         return $this->hasMany(
             Profesor::class, 'idprofesor', 'idprofesor'
@@ -30,5 +30,5 @@ class Aula extends Model
         return $this->hasMany(
             Materia::class, 'idmateria', 'idasignatura'
         );
-    }
+    }*/
 }

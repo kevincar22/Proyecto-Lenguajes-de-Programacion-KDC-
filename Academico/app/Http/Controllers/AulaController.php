@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aula;
+use App\Models\Materia;
+use App\Models\Profesor;
 use App\Http\Requests\CreateAulaRequest;
 use App\Http\Requests\UpdateAulaRequest;
-use Illuminate\Http\Request;
 
 class AulaController extends Controller
 {
@@ -15,7 +16,7 @@ class AulaController extends Controller
     public function index()
     {
         $aulas = Aula::all();
-        return view('aula.index', compact('aulas'));        
+        return view('aula.index', compact('aulas'));
     }
 
     /**
@@ -23,9 +24,7 @@ class AulaController extends Controller
      */
     public function show(Aula $aula)
     {
-        $aulas = Aula::all();
-        return view('aula.index', compact('aulas'));   
-        ///return view('aula.edit', compact('aula'));
+        return view('aula.show', compact('aula'));
     }
 
     /**
@@ -33,17 +32,45 @@ class AulaController extends Controller
      */
     public function store(CreateAulaRequest $request)
     {
+
+        // $request->validate([
+        //     'codigo' => 'required',
+        // ]);
+        //Aula::create($request->all());
+        $request->createAula();
+        return redirect()->route('aula.index')->with('success', 'aula creada con exito');
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    /*public function create()
+    {
+        return $this->form('aula.create', new Aula);
+    }*/
+    public function create()
+    {
+        $materias = Materia::all(); // Obtiene todas las materias
+        $profesores = Profesor::all(); // Obtiene todos los profesores
+        return $this->form('aula.create', new Aula, $materias, $profesores);
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
+    /*public function store(CreateAulaRequest $request)
+    {
         $request->createAula();
         return redirect()->route('Aulas.index');
-    }
+    }*/
 
         /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    /*public function create()
     {
         return $this->form('aula.create', new Aula);
-    }
+    }*/
 
 
     /**
@@ -71,12 +98,12 @@ class AulaController extends Controller
         return redirect()->route('materia.index');
     }
 
-    public function form($view, Aula $Aula)
+    /*public function form($view, Aula $Aula)
     {
         return view($view, [
             "aula" => $Aula
         ]);
-    }
+    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -97,5 +124,17 @@ class AulaController extends Controller
         // Si no está asignada a ningún profesor, procede a eliminar
         $aula->delete();
         return redirect()->route('Aulas.index')->with('success', 'Aula eliminada con éxito.');
+    }
+
+    /*public function form($view, Aula $aula)
+    {
+        return view($view, [
+            "aula" => $aula
+        ]);
+    }*/
+
+    public function form($view, Aula $aula, $materias = null, $profesores = null)
+    {
+        return view($view, compact('aula', 'materias', 'profesores'));
     }
 }
