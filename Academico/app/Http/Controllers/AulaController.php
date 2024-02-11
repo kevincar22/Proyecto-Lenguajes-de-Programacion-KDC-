@@ -13,29 +13,30 @@ class AulaController extends Controller
     public function index()
     {
         $aulas = Aula::all();
-        return view('aula.index', compact('aulas'));        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return $this->form('aula.create', new Aula);
+        return view('Aulas.index', compact('aulas'));        
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CreateAulaRequest $request)
     {
 
-        $request->validate([
-            'codigo' => 'required',
-        ]);
-        Aula::create($request->all());
-        return redirect()->route('aula.index')->with('success', 'aula creada con exito');
+        // $request->validate([
+        //     'codigo' => 'required',
+        // ]);
+        //Aula::create($request->all());
+        $request->createAula();
+        return redirect()->route('Aulas.index')->with('success', 'aula creada con exito');
 
+    }
+
+        /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        return $this->form('Aulas.create', new Aula);
     }
 
     /**
@@ -43,7 +44,7 @@ class AulaController extends Controller
      */
     public function show(Aula $aula)
     {
-        return view('aula.show', compact('aula'));
+        return view('Aulas.show', compact('aula'));
     }
 
     /**
@@ -52,7 +53,7 @@ class AulaController extends Controller
     public function edit($id)
     {
         $aula = Aula::find($id);
-        return $this->form('aula.edit', $aula);
+        return $this->form('Aulas.edit', $aula);
     }
 
     /**
@@ -61,7 +62,7 @@ class AulaController extends Controller
     public function update(Request $request, Aula $aula)
     {
         $request->updateAula($Aula);
-        return redirect()->route('Aula.index');
+        return redirect()->route('Aulas.index');
     }
 
     /**

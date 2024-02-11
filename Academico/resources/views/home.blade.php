@@ -20,10 +20,10 @@
       </a>
     </div>
     <div class="col-md-3">
-      <a href="/aulas" class="card mb-4 shadow-sm custom-card">
+      <a href="{{ route('Aulas.index') }}" class="card mb-4 shadow-sm custom-card">
         <div class="card-body text-center">
           <i class="fas fa-school fa-3x icono-gris"></i>
-          <h5 class="card-title mt-3 letra-gris">Aulas</h5>
+          <h5 class="card-title mt-3 letra-gris">{{ __('Aulas') }}</h5>
         </div>
       </a>
     </div>
