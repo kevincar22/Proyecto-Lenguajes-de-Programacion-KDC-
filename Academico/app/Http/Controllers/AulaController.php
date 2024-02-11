@@ -13,7 +13,7 @@ class AulaController extends Controller
     public function index()
     {
         $aulas = Aula::all();
-        return view('aula.index', compact('aula'));        
+        return view('aula.index', compact('aulas'));        
     }
 
     /**
@@ -29,7 +29,7 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
             'codigo' => 'required',
         ]);
