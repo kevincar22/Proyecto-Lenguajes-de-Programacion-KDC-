@@ -11,9 +11,9 @@ class AulaController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {$aulas = DB::table('aulas')->get();
-        return view('aulas.index', ['aulas' => $asignaturas]);
-        
+    {
+        $aulas = Aula::all();
+        return view('aula.index', compact('aulas'));        
     }
 
     /**
@@ -21,7 +21,7 @@ class AulaController extends Controller
      */
     public function create()
     {
-        //
+        return $this->form('aula.create', new Aula);
     }
 
     /**
@@ -29,11 +29,13 @@ class AulaController extends Controller
      */
     public function store(Request $request)
     {
+
         $request->validate([
             'codigo' => 'required',
         ]);
-        Asignatura::create($request->all());
+        Aula::create($request->all());
         return redirect()->route('aula.index')->with('success', 'aula creada con exito');
+
     }
 
     /**
@@ -41,15 +43,16 @@ class AulaController extends Controller
      */
     public function show(Aula $aula)
     {
-        //
+        return view('aula.show', compact('aula'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Aula $aula)
+    public function edit($id)
     {
-        //
+        $aula = Aula::find($id);
+        return $this->form('aula.edit', $aula);
     }
 
     /**
@@ -57,7 +60,8 @@ class AulaController extends Controller
      */
     public function update(Request $request, Aula $aula)
     {
-        //
+        $request->updateAula($Aula);
+        return redirect()->route('Aula.index');
     }
 
     /**
