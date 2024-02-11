@@ -16,8 +16,17 @@ use App\Http\Controllers\Auth\RegisterController;*/
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
-    return view('home');
+    // Verificar si el usuario está autenticado
+    if (Auth::check()) {
+        // Si el usuario está autenticado, redirigir al home
+        return redirect('/home');
+    }
+    // Si el usuario no está autenticado, mostrar la vista de login
+    return view('auth.login');
 });
 
 Auth::routes();
