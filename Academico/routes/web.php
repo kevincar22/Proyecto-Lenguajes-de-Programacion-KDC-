@@ -39,7 +39,7 @@ Route::resource('Aulas', AulaController::class);*/
 
 Route::resource('Profesor', ProfesorController::class);
 Route::resource('Aulas', AulaController::class);
-
+Route::put('/Aulas/{Aula}', [AulaController::class, 'update'])->name('Aulas.update');
 // Route::get('/Aulas', [AulaController::class, 'index'])->name('Aulas.index');
 // Route::get('/Aulas/create', [AulaController::class, 'create'])->name('Aulas.create');
 // Route::post('/Aulas', [AulaController::class, 'store']);

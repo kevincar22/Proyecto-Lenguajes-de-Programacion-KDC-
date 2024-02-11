@@ -23,7 +23,9 @@ class AulaController extends Controller
      */
     public function show(Aula $aula)
     {
-        return view('Aulas.show', compact('aula'));
+        $aulas = Aula::all();
+        return view('aula.index', compact('aulas'));   
+        ///return view('aula.edit', compact('aula'));
     }
 
     /**
@@ -81,16 +83,16 @@ class AulaController extends Controller
      */
     public function destroy($id)
     {
-        $aula = Aula::with('profesores', 'materias')->find($id);
+        $aula = Aula::find($id);
 
         if (!$aula) {
             return redirect()->route('Aulas.index')->with('error', 'La aula no existe.');
         }
 
-        if ($aula->profesores->isNotEmpty() and $aula->materias->isNotEmpty()) {
-            // Si la materia está asignada a algún profesor, redirige con un mensaje de error
-            return redirect()->route('Aulas.index')->with('error', 'Esta aula está asignada a un profesor/materia y no puede ser eliminada.');
-        }
+        // if ($aula->profesores->isNotEmpty() and $aula->materias->isNotEmpty()) {
+        //     // Si la materia está asignada a algún profesor, redirige con un mensaje de error
+        //     return redirect()->route('Aulas.index')->with('error', 'Esta aula está asignada a un profesor/materia y no puede ser eliminada.');
+        // }
 
         // Si no está asignada a ningún profesor, procede a eliminar
         $aula->delete();

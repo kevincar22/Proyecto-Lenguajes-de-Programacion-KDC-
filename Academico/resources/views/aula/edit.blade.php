@@ -5,8 +5,8 @@
     @include('shared._errors')
     @slot('header', 'Editar usuario')
 
-    <form method="POST" action="{{url("Aulas/{$aula}")}}">
-        {{method_field('PUT')}}
+    <form method="POST" action="{{url( "Aulas/{$aula->idaula}") }}">
+        {{ method_field('PUT') }}
 
         @include('aula._fields')
 
