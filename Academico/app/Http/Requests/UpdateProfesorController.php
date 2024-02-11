@@ -26,9 +26,10 @@ class UpdateProfesorRequest extends FormRequest
 
     public function rules()
     {
+        $profesorId = $this->route('Profesor');
         return [
             'nombre' => ['required', 'string', 'max:60'],
-            'cedula' => ['required', Rule::unique('Profesor')->ignore($this->Profesor)],
+            'cedula' => ['required', Rule::unique('profesor')->ignore($profesorId, 'idprofesor')],
             'idasignatura' => ['required'],
         ];
     }
@@ -44,7 +45,7 @@ class UpdateProfesorRequest extends FormRequest
 
     /*public function updateProfesor(Profesor $profesor)
     {
-        $profesor->update($this->validated());
+        $profesor->update($this->validated()); 
         return redirect()->route('Profesor.index');
     }*/
 
@@ -54,7 +55,7 @@ class UpdateProfesorRequest extends FormRequest
         $Profesor->idasignatura = $this->idasignatura;
         $Profesor->save();
     
-        return redirect()->route('Profesor.index');
+        return redirect()->route('profesor.index');
     
     }
 }

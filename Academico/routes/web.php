@@ -37,7 +37,14 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('Profesor', ProfesorController::class);
+/**Rutas profesor */
+Route::get('/Profesor/nuevo', [ProfesorController::class, 'create'])->name('profesor.create');
+Route::post('/Profesor', [ProfesorController::class, 'store']);
+Route::get('/Profesor', [ProfesorController::class, 'index'])->name('profesor.index');
+Route::get('/Profesor/{Profesor}', [ProfesorController::class, 'show'])->name('profesor.show');
+Route::put('/Profesor/{Profesor}', [ProfesorController::class, 'update'])->name('profesor.update');
+Route::get('/Profesor/{Profesor}/editar', [ProfesorController::class, 'edit'])->name('profesor.edit');
+Route::delete('/Profesor/{id}', [ProfesorController::class, 'destroy'])->name('profesor.destroy');
 
 /**Rutas para Aulas */
 Route::get('/Aulas/nuevo', [AulaController::class, 'create'])->name('Aulas.create');

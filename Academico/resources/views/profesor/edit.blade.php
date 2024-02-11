@@ -5,7 +5,7 @@
     @include('shared._errors')
     @slot('header', 'Editar Profesor')
 
-    <form method="POST" action="{{route('Profesor.update', $profesor->idprofesor)}}">
+    <form method="POST" action="{{route('profesor.update', $profesor->idprofesor)}}">
         {{method_field('PUT')}}
 
         @include('profesor._fields')
@@ -14,7 +14,7 @@
             <button
                 type="submit" class="btn btn-primary"
             >Actualizar profesor</button>
-            <a href="{{ route('Profesor.index') }}" class="btn btn-primary">
+            <a href="{{ route('profesor.index') }}" class="btn btn-primary">
                 Regresar al listado
             </a>
         </div>

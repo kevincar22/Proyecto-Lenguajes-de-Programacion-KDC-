@@ -30,7 +30,7 @@ class AulaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(CreateAulaRequest $request)
+    public function store(CreateAulaRequest $request) 
     {
 
         // $request->validate([

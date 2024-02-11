@@ -4,7 +4,7 @@
     <div class="container mt-4">
         <div style="padding: 12px">
             <h3 style="font-weight: bold">Profesores</h3>
-            <a href="{{ route('Profesor.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            <a href="{{ route('profesor.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
             @if ($profesores->isNotEmpty())
                 <div class="table-responsive-lg">
                     <table class="table">
@@ -24,9 +24,9 @@
                                     <td>{{ $pf->materia->nombre ?? 'Sin materia' }}</td> {{-- Asegúrate de que cada profesor tenga una materia asociada para evitar errores --}}
                                     <td>
                                         <div class="btn-group" role="group" aria-label="Basic example">
-                                            <a href="{{ route('Profesor.edit', $pf->idprofesor) }}"
+                                            <a href="{{ route('profesor.edit', $pf->idprofesor) }}"
                                                 class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                                            <form action="{{ route('Profesor.destroy', $pf->idprofesor) }}" method="POST"
+                                            <form action="{{ route('profesor.destroy', $pf->idprofesor) }}" method="POST"
                                                 onsubmit="return confirm('¿Estás seguro de querer eliminar este profesor?');">
                                                 @csrf
                                                 @method('DELETE')

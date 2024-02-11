@@ -6,7 +6,6 @@ use App\Http\Requests\CreateProfesorRequest;
 use App\Http\Requests\UpdateProfesorRequest;
 use App\Models\Materia;
 use App\Models\Profesor;
-use Illuminate\Http\Request;
 
 class ProfesorController extends Controller
 {
@@ -25,7 +24,7 @@ class ProfesorController extends Controller
     public function create()
     {
         $materias = Materia::all();
-        return $this->form('Profesor.create', new Profesor, $materias);
+        return $this->form('profesor.create', new Profesor, $materias);
     }
 
     /**
@@ -34,7 +33,7 @@ class ProfesorController extends Controller
     public function store(CreateProfesorRequest $request)
     {
         $request->createProfesor();
-        return redirect()->route('Profesor.index')->with('success', 'profesor creado con exito');
+        return redirect()->route('profesor.index')->with('success', 'profesor creado con exito');
     }
 
     /**
@@ -52,7 +51,7 @@ class ProfesorController extends Controller
     {
         $profesor = Profesor::find($id);
         $materias = Materia::all(); 
-        return $this->form('profesor.edit', $profesor, $materias);
+        return $this->form('profesor.edit', $profesor, $materias); 
     }
 
     /**
@@ -61,7 +60,7 @@ class ProfesorController extends Controller
     public function update(UpdateProfesorRequest $request, Profesor $profesor)
     {
         $request->updateProfesor($profesor);
-        return redirect()->route('Profesor.index');
+        return redirect()->route('profesor.index');
     }
 
     /**
@@ -72,15 +71,15 @@ class ProfesorController extends Controller
         $profesor = Profesor::with('aulas')->find($id);
 
         if (!$profesor) {
-            return redirect()->route('Profesor.index')->with('error', 'El profesor no existe.');
+            return redirect()->route('profesor.index')->with('error', 'El profesor no existe.');
         }
 
         if ($profesor->aulas->isNotEmpty()) {
-            return redirect()->route('Profesor.index')->with('error', 'Este profesor está asignado a un aula y no puede ser eliminado.');
+            return redirect()->route('profesor.index')->with('error', 'Este profesor está asignado a un aula y no puede ser eliminado.');
         }
 
         $profesor->delete();
-        return redirect()->route('Profesor.index')->with('success', 'Profesor eliminado con éxito.');
+        return redirect()->route('profesor.index')->with('success', 'Profesor eliminado con éxito.');
     }
 
     public function form($view, Profesor $profesor, $materias = null)
