@@ -1,6 +1,7 @@
 @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
-<div>
+<div style="padding: 12px">
+    <h3 style="font-weight: bold">Materias</h3>
     <a href="{{ route('materia.create') }}" class="btn btn-primary">Crear</a>
    @if ($materias->isNotEmpty())
    <div class="table-responsive-lg">
@@ -10,6 +11,7 @@
                 <th scope="col">Nombre</th>
                 <th scope="col">Codigo</th>
                 <th scope="col">Descripcion</th>
+                <th scope="col">Acciones</th>
             </tr>
         </thead>
             <tbody>

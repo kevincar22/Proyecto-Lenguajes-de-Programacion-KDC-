@@ -1,7 +1,8 @@
 @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
 
-<div>
+<div style="padding: 12px">
+    <h3 style="font-weight: bold">Crear Materia</h3>
     @include('shared._errors')
     @slot('header', 'Nueva Materia')
 
@@ -13,7 +14,7 @@
             <button
                 type="submit" class="btn btn-primary"
             >Crear materia</button>
-            <a href="{{ route('materia.index') }}" class="btn btn-link">
+            <a href="{{ route('materia.index') }}" class="btn btn-primary">
                 Regresar al listado
             </a>
         </div>
