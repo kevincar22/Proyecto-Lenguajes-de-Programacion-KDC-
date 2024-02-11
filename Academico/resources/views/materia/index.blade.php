@@ -1,5 +1,5 @@
-@vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
+@extends('layouts.app')
+@section('content')
 <div style="padding: 12px">
     <h3 style="font-weight: bold">Materias</h3>
     <a href="{{ route('materia.create') }}" class="btn btn-primary">Crear</a>
@@ -39,3 +39,5 @@
     <p>No hay materias</p>
    @endif
 </div>
+
+@endsection
