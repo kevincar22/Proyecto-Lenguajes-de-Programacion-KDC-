@@ -17,11 +17,13 @@ class Aula extends Model
     protected $fillable = [
         'nombre',
         'codigo',
+        'idasignatura',
+        'idprofesor',
         'descripcion',
     ];
 
     public function profesores()
     {
-        return $this->hasMany(Profesor::class, 'idasi', 'Idprofesor');
+        return $this->hasMany(Profesor::class, 'idasignatura', 'idasignatura');
     }
 }
