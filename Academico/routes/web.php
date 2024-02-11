@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\MateriaController;
 
 /*use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
@@ -7,6 +8,8 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MateriassController;
+use App\Http\Controllers\ProfesorController;
+use App\Http\Controllers\AulaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,8 +22,16 @@ use App\Http\Controllers\MateriassController;
 |
 */
 
+use Illuminate\Support\Facades\Auth;
+
 Route::get('/', function () {
-    return view('home');
+    // Verificar si el usuario está autenticado
+    if (Auth::check()) {
+        // Si el usuario está autenticado, redirigir al home
+        return redirect('/home');
+    }
+    // Si el usuario no está autenticado, mostrar la vista de login
+    return view('auth.login');
 });
 
 Route::resource('Materias', MateriassController::class);
@@ -30,4 +41,3 @@ Route::resource('Aulas', AulaController::class);
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
