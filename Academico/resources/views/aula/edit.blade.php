@@ -3,9 +3,9 @@
 <div style="padding: 12px">
     <h3 style="font-weight: bold">Editar Aula</h3>
     @include('shared._errors')
-    @slot('header', 'Editar usuario')
+    @slot('header', 'Editar Aula')
 
-    <form method="POST" action="{{url( "Aulas/{$aula->idaula}") }}">
+    <form method="POST" action="{{ url( "Aulas/{$aula->idaula}") }}"> <!--route('Aulas.update', $aula->idaula)-->
         {{ method_field('PUT') }}
 
         @include('aula._fields')

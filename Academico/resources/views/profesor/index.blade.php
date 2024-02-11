@@ -1,33 +1,33 @@
 @extends('layouts.app')
+
 @section('content')
     <div class="container mt-4">
         <div style="padding: 12px">
-            <h3 style="font-weight: bold">Aulas</h3>
-            <a href="{{ route('Aulas.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
-            @if ($aulas->isNotEmpty())
+            <h3 style="font-weight: bold">Profesores</h3>
+            <a href="{{ route('Profesor.create') }}" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+            @if ($profesores->isNotEmpty())
                 <div class="table-responsive-lg">
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Codigo</th>
-                                <th scope="col">Profesor</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Cedula</th>
                                 <th scope="col">Materia</th>
                                 <th scope="col">Acciones</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($aulas as $al)
+                            @foreach ($profesores as $pf)
                                 <tr>
-                                    <td>{{ $al->codigo }}</td>
-                                    <td>{{ $al->profesor->nombre ?? 'Sin Profesor' }}</td>
-                                    <td>{{ $al->materia->nombre ?? 'Sin Materia' }}</td>
-
+                                    <td>{{ $pf->nombre }}</td>
+                                    <td>{{ $pf->cedula }}</td>
+                                    <td>{{ $pf->materia->nombre ?? 'Sin materia' }}</td> {{-- Asegúrate de que cada profesor tenga una materia asociada para evitar errores --}}
                                     <td>
-                                        <div class="row-container" style="display: flex">
-                                            <a href="{{ route('Aulas.edit', $al->idaula) }}" class="btn btn-primary"><i
-                                                    class="fas fa-edit"></i></a>
-                                            <form action="{{ route('Aulas.destroy', $al->idaula) }}" method="POST"
-                                                style="margin: 0px">
+                                        <div class="btn-group" role="group" aria-label="Basic example">
+                                            <a href="{{ route('Profesor.edit', $pf->idprofesor) }}"
+                                                class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                                            <form action="{{ route('Profesor.destroy', $pf->idprofesor) }}" method="POST"
+                                                onsubmit="return confirm('¿Estás seguro de querer eliminar este profesor?');">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger"><i
@@ -41,7 +41,7 @@
                     </table>
                 </div>
             @else
-                <p>No hay Aulas</p>
+                <p>No hay materias registradas.</p>
             @endif
         </div>
     </div>
@@ -66,5 +66,4 @@
             });
         </script>
     @endif
-
 @endsection

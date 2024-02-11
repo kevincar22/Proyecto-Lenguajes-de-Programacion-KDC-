@@ -3,18 +3,18 @@
 @section('content')
 <div class="container mt-4">
     <div style="padding: 12px">
-        <h3 style="font-weight: bold">Crear Aula</h3>
+        <h3 style="font-weight: bold">Crear Profesor</h3>
         @include('shared._errors')
-        @slot('header', 'Nueva Aula')
+        @slot('header', 'Nueva Profesor')
 
-        <form method="POST" action="{{url('Aulas')}}">
-            @include('aula._fields')
+        <form method="POST" action="{{route("Profesor.store")}}">
+            @include('profesor._fields')
 
             <div class="form-group d-flex justify-content-between">
                 <button type="submit" class="btn btn-primary">
-                    <i class="fas fa-save"></i> Crear Aula
+                    <i class="fas fa-save"></i> Crear Profesor
                 </button>
-                <a href="{{ route('Aulas.index') }}" class="btn btn-secondary">
+                <a href="{{ route('Profesor.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Regresar al listado
                 </a>
             </div>

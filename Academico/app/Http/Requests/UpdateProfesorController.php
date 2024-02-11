@@ -42,13 +42,13 @@ class UpdateProfesorRequest extends FormRequest
         ];
     }
 
-    public function updateProfesor(Profesor $profesor)
+    /*public function updateProfesor(Profesor $profesor)
     {
         $profesor->update($this->validated());
         return redirect()->route('Profesor.index');
-    }
+    }*/
 
-    /*public function updateProfesor(Profesor $Profesor){
+    public function updateProfesor(Profesor $Profesor){
         $Profesor->nombre = $this->nombre;
         $Profesor->cedula = $this->cedula;
         $Profesor->idasignatura = $this->idasignatura;
@@ -56,5 +56,5 @@ class UpdateProfesorRequest extends FormRequest
     
         return redirect()->route('Profesor.index');
     
-    }*/
+    }
 }

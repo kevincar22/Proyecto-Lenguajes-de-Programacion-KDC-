@@ -9,7 +9,7 @@ class Profesor extends Model
 {
     use HasFactory;
 
-    protected $table = 'Profesor'; // Especifica el nombre de la tabla si no sigue la convención de Laravel
+    protected $table = 'profesor'; // Especifica el nombre de la tabla si no sigue la convención de Laravel
     protected $primaryKey = 'idprofesor'; // Especifica la clave primaria si no es 'id'
 
     protected $fillable = [

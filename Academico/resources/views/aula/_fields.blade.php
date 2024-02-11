@@ -6,12 +6,25 @@
 </div>
 
 <div class="form-group">
-    <label for="idasignatura"  style="font-weight: bold">IdAsignatura</label>
-    <input type="number" class="form-control" id="idasignatura" name="idasignatura" value="{{ old('idasignatura',$aula->idasignatura) }}"> 
+    <label for="idasignatura" style="font-weight: bold">Materia</label>
+    <select class="form-control" id="idasignatura" name="idasignatura">
+        @foreach ($materias as $materia)
+            <option value="{{ $materia->idmateria }}" 
+                {{ old('idasignatura', isset($aula) ? $aula->idasignatura : null) == $materia->idmateria ? 'selected' : '' }}>
+                {{ $materia->nombre }}
+            </option>
+        @endforeach
+    </select>
 </div>
 
 <div class="form-group">
-    <label for="idprofesor" style="font-weight: bold">IdProfesor</label>
-    <input type="number" class="form-control" id="idprofesor" name="idprofesor" value="{{ old('idprofesor',$aula->idprofesor) }}"> 
+    <label for="idprofesor" style="font-weight: bold">Profesor</label>
+    <select class="form-control" id="idprofesor" name="idprofesor">
+        @foreach ($profesores as $pf)
+            <option value="{{ $pf->idprofesor }}" 
+                {{ old('idprofesor', isset($aula) ? $aula->idprofesor : null) == $pf->idprofesor ? 'selected' : '' }}>
+                {{ $pf->nombre }}
+            </option>
+        @endforeach
+    </select>
 </div>
-

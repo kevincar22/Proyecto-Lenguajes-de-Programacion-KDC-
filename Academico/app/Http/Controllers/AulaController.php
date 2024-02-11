@@ -38,16 +38,12 @@ class AulaController extends Controller
         // ]);
         //Aula::create($request->all());
         $request->createAula();
-        return redirect()->route('aula.index')->with('success', 'aula creada con exito');
+        return redirect()->route('Aulas.index')->with('success', 'Aula creada con exito');
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    /*public function create()
-    {
-        return $this->form('aula.create', new Aula);
-    }*/
     public function create()
     {
         $materias = Materia::all(); // Obtiene todas las materias
@@ -56,54 +52,30 @@ class AulaController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    /*public function store(CreateAulaRequest $request)
-    {
-        $request->createAula();
-        return redirect()->route('Aulas.index');
-    }*/
-
-        /**
-     * Show the form for creating a new resource.
-     */
-    /*public function create()
-    {
-        return $this->form('aula.create', new Aula);
-    }*/
-
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit($id)
     {
         $aula = Aula::find($id);
-        return $this->form('aula.edit', $aula);
+        $materia = Materia::all();
+        $profesor = Profesor::all();
+        return $this->form('aula.edit', $aula, $materia, $profesor);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAulaRequest $request, Aula $aula)
+    public function update(UpdateAulaRequest $request, Aula $Aula)
     {
-        $request->updateAula($aula);
-        return redirect()->route('Aulas.index');
+        $request->updateAula($Aula);
+        return redirect()->route('Aulas.index')->with('success', 'Aula editada con exito');
     }
-
 
     public function trash(Aula $aula)
     {
         $aula->delete();
-        return redirect()->route('materia.index');
+        return redirect()->route('Aulas.index');
     }
-
-    /*public function form($view, Aula $Aula)
-    {
-        return view($view, [
-            "aula" => $Aula
-        ]);
-    }*/
 
     /**
      * Remove the specified resource from storage.
@@ -125,13 +97,6 @@ class AulaController extends Controller
         $aula->delete();
         return redirect()->route('Aulas.index')->with('success', 'Aula eliminada con éxito.');
     }
-
-    /*public function form($view, Aula $aula)
-    {
-        return view($view, [
-            "aula" => $aula
-        ]);
-    }*/
 
     public function form($view, Aula $aula, $materias = null, $profesores = null)
     {

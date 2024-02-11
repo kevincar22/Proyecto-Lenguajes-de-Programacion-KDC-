@@ -18,17 +18,13 @@ class Aula extends Model
         'idprofesor'
     ];
 
-    /*public function profesores()
+    public function profesor()
     {
-        return $this->hasMany(
-            Profesor::class, 'idprofesor', 'idprofesor'
-        );
+        return $this->belongsTo(Profesor::class, 'idprofesor');
     }
 
-    public function materias()
+    public function materia()
     {
-        return $this->hasMany(
-            Materia::class, 'idmateria', 'idasignatura'
-        );
-    }*/
+        return $this->belongsTo(Materia::class, 'idasignatura');
+    }
 }

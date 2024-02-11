@@ -33,21 +33,22 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-/*Route::resource('Materias', MateriasController::class);
-Route::resource('Profesor', ProfesorController::class);
-Route::resource('Aulas', AulaController::class);*/
-
-Route::resource('Profesor', ProfesorController::class);
-Route::resource('Aulas', AulaController::class);
-Route::put('/Aulas/{Aula}', [AulaController::class, 'update'])->name('Aulas.update');
-// Route::get('/Aulas', [AulaController::class, 'index'])->name('Aulas.index');
-// Route::get('/Aulas/create', [AulaController::class, 'create'])->name('Aulas.create');
-// Route::post('/Aulas', [AulaController::class, 'store']);
 
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::resource('Profesor', ProfesorController::class);
+
+/**Rutas para Aulas */
+Route::get('/Aulas/nuevo', [AulaController::class, 'create'])->name('Aulas.create');
+Route::post('/Aulas', [AulaController::class, 'store']);
+Route::get('/Aulas', [AulaController::class, 'index'])->name('Aulas.index');
+Route::get('/Aulas/{Aula}', [AulaController::class, 'show'])->name('aula.show');
+Route::put('/Aulas/{Aula}', [AulaController::class, 'update'])->name('Aulas.update');
+Route::get('/Aulas/{Aula}/editar', [AulaController::class, 'edit'])->name('Aulas.edit');
+Route::delete('/Aulas/{id}', [AulaController::class, 'destroy'])->name('Aulas.destroy');
+
+/**Rutas para materias */
 Route::get('/materias/nuevo', [MateriaController::class, 'create'])->name('materia.create');
 Route::post('/materias', [MateriaController::class, 'store']);
 Route::get('/materias', [MateriaController::class, 'index'])->name('materia.index');
