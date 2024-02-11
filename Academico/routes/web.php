@@ -33,7 +33,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-/*Route::resource('Materias', MateriassController::class);
+/*Route::resource('Materias', MateriasController::class);
 Route::resource('Profesor', ProfesorController::class);
 Route::resource('Aulas', AulaController::class);*/
 

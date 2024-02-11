@@ -11,9 +11,9 @@ class Materia extends Model
     use HasFactory;
     protected $table = 'materia';
     protected $primaryKey = 'idmateria';
-    const UPDATED_AT = null;
+    /*const UPDATED_AT = null;
 
-    const CREATED_AT = null;
+    const CREATED_AT = null;*/
 
     protected $fillable = [
         'nombre',
