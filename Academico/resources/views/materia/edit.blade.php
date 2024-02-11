@@ -1,6 +1,5 @@
-@vite(['resources/sass/app.scss', 'resources/js/app.js'])
-
-
+@extends('layouts.app')
+@section('content')
 <div style="padding: 12px">
     <h3 style="font-weight: bold">Editar Materia</h3>
     @include('shared._errors')
@@ -22,3 +21,4 @@
 
     </form>
 </div>
+@endsection

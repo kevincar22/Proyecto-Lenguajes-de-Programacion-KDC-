@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
-class Materia extends Model{
+class Materia extends Model
+{
     use HasFactory;
     protected $table = 'materia';
     protected $primaryKey = 'idmateria';
@@ -14,4 +15,14 @@ class Materia extends Model{
 
     const CREATED_AT = null;
 
+    protected $fillable = [
+        'nombre',
+        'codigo',
+        'descripcion',
+    ];
+
+    public function profesores()
+    {
+        return $this->hasMany(Profesor::class, 'idasignatura', 'idmateria');
+    }
 }
