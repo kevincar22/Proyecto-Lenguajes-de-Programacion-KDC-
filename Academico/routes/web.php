@@ -2,7 +2,11 @@
 
 /*use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\Auth\RegisterController;*/
+use App\Http\Controllers\Auth\RegisterController;
+
+*/
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MateriassController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +23,11 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::resource('Materias', MateriassController::class);
+Route::resource('Profesor', ProfesorController::class);
+Route::resource('Aulas', AulaController::class);
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

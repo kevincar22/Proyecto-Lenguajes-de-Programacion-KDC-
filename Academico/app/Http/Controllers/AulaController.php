@@ -11,9 +11,9 @@ class AulaController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $aulas = DB::table('aulas')->get();
+    {$aulas = DB::table('aulas')->get();
         return view('aulas.index', ['aulas' => $asignaturas]);
+        
     }
 
     /**
