@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Request\CreateMateriaRequest;
+use App\Http\Requests\CreateMateriaRequest;
 use App\Http\Requests\UpdateMateriaRequest;
 use App\Models\Materia;
 
@@ -25,11 +25,12 @@ class MateriaController extends Controller{
         return $this->form('materia.create', new Materia);
     }
 
-    public function edit(Materia $materia){
-        return $this->form('materia.edit', $materia);
+    public function edit($id){
+        $mat = Materia::find($id);
+        return $this->form('materia.edit', $mat);
     }
 
-    public function update(Materia $materia, UpdateMateriaRequest $request){
+    public function update(UpdateMateriaRequest $request,Materia $materia){
         $request->updateMateria($materia);
         return redirect()->route('materia.index');
     }
@@ -41,6 +42,14 @@ class MateriaController extends Controller{
 
 
     public function form($view, Materia $materia){
-        return view($view, compact('materia'));
+        return view($view, [
+            "materia" => $materia
+        ]);
+    }
+
+    public function destroy($id){
+        $materia = Materia::find($id);
+        $materia->delete();
+        return redirect()->route('materia.index');
     }
 }

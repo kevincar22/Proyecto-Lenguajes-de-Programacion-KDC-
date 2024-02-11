@@ -23,5 +23,11 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/materias/nuevo', [MateriaController::class, 'create'])->name('materia.create');
+
+Route::post('/materias', [MateriaController::class, 'store']);
 Route::get('/materias', [MateriaController::class, 'index'])->name('materia.index');
 Route::get('/materias/{materia}', [MateriaController::class, 'show'])->name('materia.show');
+Route::get('/materias/{materia}/editar', [MateriaController::class, 'edit'])->name('materia.edit');
+Route::put('/materias/{materia}', [MateriaController::class, 'update'])->name('materia.update');
+Route::delete('/materias/{id}', [MateriaController::class, 'destroy'])->name('materia.destroy');

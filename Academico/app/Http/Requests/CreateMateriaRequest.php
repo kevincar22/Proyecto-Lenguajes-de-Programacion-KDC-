@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Request;
+namespace App\Http\Requests;
 
 use App\Models\Materia;
-use Illuminate\Support\Facades\DB;
+
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class CreateMateriaRequest extends Request{
+class CreateMateriaRequest extends FormRequest{
     /**
      * Determine if the user is authorized to make this request.
      *

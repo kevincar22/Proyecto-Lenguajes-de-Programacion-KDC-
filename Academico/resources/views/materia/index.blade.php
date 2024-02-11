@@ -1,7 +1,7 @@
-@extends('layouts.app')
-
+@vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
 <div>
+    <a href="{{ route('materia.create') }}" class="btn btn-primary">Crear</a>
    @if ($materias->isNotEmpty())
    <div class="table-responsive-lg">
     <table class="table">
@@ -13,11 +13,21 @@
             </tr>
         </thead>
             <tbody>
-                @foreach ($materias as $materia)
+                @foreach ($materias as $mat)
                 <tr>
-                    <td>{{ $materia->nombre }}</td>
-                    <td>{{ $materia->codigo }}</td>
-                    <td>{{ $materia->descripcion }}</td>
+                    <td>{{ $mat->nombre }}</td>
+                    <td>{{ $mat->codigo }}</td>
+                    <td>{{ $mat->descripcion }}</td>
+                    <td>
+                        <div class="row-container">
+                            <a href="{{ route('materia.edit', $mat->idmateria) }}" class="btn btn-primary">Editar</a>
+                            <form action="{{ route('materia.destroy', $mat->idmateria) }}" method="POST" style="margin: 0px">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </div>
+                    </td>
                 </tr>
                 @endforeach
             </tbody>

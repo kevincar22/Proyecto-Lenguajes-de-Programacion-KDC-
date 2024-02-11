@@ -9,11 +9,9 @@ use Illuminate\Support\Facades\DB;
 class Materia extends Model{
     use HasFactory;
     protected $table = 'materia';
-    public function delete(){
-        DB::transaction(
-            function () {
-                $this->delete();
-            }
-        );
-    }
+    protected $primaryKey = 'idmateria';
+    const UPDATED_AT = null;
+
+    const CREATED_AT = null;
+
 }
