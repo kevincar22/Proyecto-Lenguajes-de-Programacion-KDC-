@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateProfesorRequest;
 use App\Http\Requests\UpdateProfesorRequest;
+use App\Http\Requests\CreateProfesorRequest;
 use App\Models\Materia;
 use App\Models\Profesor;
 
@@ -14,8 +14,12 @@ class ProfesorController extends Controller
      */
     public function index()
     {
+        $breadcrumbs = [
+            ['url' => route('home'), 'name' => 'Inicio'],
+            ['name' => 'Profesores', 'url' => '']
+        ];
         $profesores = Profesor::all();
-        return view('profesor.index', compact('profesores'));
+        return view('profesor.index', compact('profesores', 'breadcrumbs'));
     }
 
     /**
@@ -33,7 +37,7 @@ class ProfesorController extends Controller
     public function store(CreateProfesorRequest $request)
     {
         $request->createProfesor();
-        return redirect()->route('profesor.index')->with('success', 'profesor creado con exito');
+        return redirect()->route('profesor.index')->with('success', 'Profesor creado con exito');
     }
 
     /**
@@ -50,17 +54,17 @@ class ProfesorController extends Controller
     public function edit($id)
     {
         $profesor = Profesor::find($id);
-        $materias = Materia::all(); 
-        return $this->form('profesor.edit', $profesor, $materias); 
+        $materias = Materia::all();
+        return $this->form('profesor.edit', $profesor, $materias);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProfesorRequest $request, Profesor $profesor)
+    public function update(UpdateProfesorRequest $request, Profesor $Profesor)
     {
-        $request->updateProfesor($profesor);
-        return redirect()->route('profesor.index');
+        $request->updateProfesor($Profesor);
+        return redirect()->route('profesor.index')->with('success', 'Profesor editado con exito');
     }
 
     /**
@@ -68,22 +72,36 @@ class ProfesorController extends Controller
      */
     public function destroy($id)
     {
-        $profesor = Profesor::with('aulas')->find($id);
+        $profesor = Profesor::with('aulas')->find($id); // Cambia 'aula' por 'aulas' para reflejar la relación uno a muchos
 
         if (!$profesor) {
             return redirect()->route('profesor.index')->with('error', 'El profesor no existe.');
         }
 
+        // Verifica si el profesor tiene aulas asignadas
         if ($profesor->aulas->isNotEmpty()) {
-            return redirect()->route('profesor.index')->with('error', 'Este profesor está asignado a un aula y no puede ser eliminado.');
+            // Si el profesor tiene una o más aulas asignadas, impide la eliminación
+            return redirect()->route('profesor.index')->with('error', 'Este profesor está asignado a una o más aulas y no puede ser eliminado.');
         }
 
+        // Si el profesor no tiene aulas asignadas, procede a eliminarlo
         $profesor->delete();
         return redirect()->route('profesor.index')->with('success', 'Profesor eliminado con éxito.');
     }
 
+
     public function form($view, Profesor $profesor, $materias = null)
     {
-        return view($view, compact('profesor', 'materias'));
+        $breadcrumbs = [
+            ['url' => route('home'), 'name' => 'Inicio'],
+            ['url' => route('profesor.index'), 'name' => 'Profesores'],
+        ];
+    
+        if ($profesor && $profesor->exists) {
+            $breadcrumbs[] = ['name' => 'Editar Materia'];
+        } else {
+            $breadcrumbs[] = ['name' => 'Crear Materia'];
+        }
+        return view($view, compact('profesor', 'materias', 'breadcrumbs'));
     }
 }

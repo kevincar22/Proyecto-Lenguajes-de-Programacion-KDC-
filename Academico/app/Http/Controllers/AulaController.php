@@ -15,8 +15,12 @@ class AulaController extends Controller
      */
     public function index()
     {
+        $breadcrumbs = [
+            ['url' => route('home'), 'name' => 'Inicio'],
+            ['name' => 'Aulas', 'url' => '']
+        ];
         $aulas = Aula::all();
-        return view('aula.index', compact('aulas'));
+        return view('aula.index', compact('aulas', 'breadcrumbs'));
     }
 
     /**
@@ -100,6 +104,16 @@ class AulaController extends Controller
 
     public function form($view, Aula $aula, $materias = null, $profesores = null)
     {
-        return view($view, compact('aula', 'materias', 'profesores'));
+        $breadcrumbs = [
+            ['url' => route('home'), 'name' => 'Inicio'],
+            ['url' => route('Aulas.index'), 'name' => 'Aulas'],
+        ];
+    
+        if ($aula && $aula->exists) {
+            $breadcrumbs[] = ['name' => 'Editar Materia'];
+        } else {
+            $breadcrumbs[] = ['name' => 'Crear Materia'];
+        }
+        return view($view, compact('aula', 'materias', 'profesores', 'breadcrumbs'));
     }
 }

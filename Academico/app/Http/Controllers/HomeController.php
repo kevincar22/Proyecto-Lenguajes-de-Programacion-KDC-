@@ -23,6 +23,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $breadcrumbs = [
+            ['url' => route('home'), 'name' => 'Inicio']
+        ];
+        return view('home', compact('breadcrumbs'));
     }
 }

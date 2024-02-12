@@ -28,9 +28,14 @@ class UpdateProfesorRequest extends FormRequest
     {
         $profesorId = $this->route('Profesor');
         return [
-            'nombre' => ['required', 'string', 'max:60'],
-            'cedula' => ['required', Rule::unique('profesor')->ignore($profesorId, 'idprofesor')],
-            'idasignatura' => ['required'],
+            'nombre' => ['required', 'string', 'max:255'],
+            'cedula' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('profesor')->ignore($profesorId, 'idprofesor')
+            ],
+            'idasignatura' => ['required', 'integer'],
         ];
     }
 
@@ -39,6 +44,7 @@ class UpdateProfesorRequest extends FormRequest
         return [
             'nombre.required' => 'El campo nombre es requerido',
             'cedula.required' => 'El campo cedula es requerido',
+            'cedula.unique' => 'La cedula ya existe',
             'idasignatura.required' => 'El campo asignatura es requerido'
         ];
     }
@@ -49,13 +55,13 @@ class UpdateProfesorRequest extends FormRequest
         return redirect()->route('Profesor.index');
     }*/
 
-    public function updateProfesor(Profesor $Profesor){
-        $Profesor->nombre = $this->nombre;
-        $Profesor->cedula = $this->cedula;
-        $Profesor->idasignatura = $this->idasignatura;
-        $Profesor->save();
-    
+    public function updateProfesor(Profesor $profesor)
+    {
+        $profesor->nombre = $this->nombre;
+        $profesor->cedula = $this->cedula;
+        $profesor->idasignatura = $this->idasignatura;
+        $profesor->save();
+
         return redirect()->route('profesor.index');
-    
     }
 }

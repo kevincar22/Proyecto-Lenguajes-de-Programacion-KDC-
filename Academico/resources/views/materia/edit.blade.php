@@ -1,22 +1,30 @@
 @extends('layouts.app')
+
 @section('content')
-    <div style="padding: 12px">
-        <h3 style="font-weight: bold">Editar Materia</h3>
-        @include('shared._errors')
-        @slot('header', 'Editar usuario')
-
-        <form method="POST" action="{{ url("materias/{$materia->idmateria}") }}">
-            {{ method_field('PUT') }}
-
-            @include('materia._fields')
-
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">Actualizar materia</button>
-                <a href="{{ route('materia.index') }}" class="btn btn-primary">
-                    Regresar al listado
-                </a>
+    <div class="container mt-5">
+        <div class="card" style="background-color: #404b59; color: #ffffff;">
+            <div class="card-header" style="background-color: #262e35;">
+                <h3 class="fw-bold">Editar Materia</h3>
             </div>
+            <div class="card-body">
+                @include('shared._errors')
 
-        </form>
+                <form method="POST" action="{{ url("materias/{$materia->idmateria}") }}">
+                    @csrf
+                    @method('PUT')
+
+                    @include('materia._fields')
+
+                    <div class="form-group d-flex justify-content-between mt-4">
+                        <button type="submit" class="btn" style="background-color: #576673; color: #ffffff;">
+                            <i class="fas fa-save"></i> Actualizar Materia
+                        </button>
+                        <a href="{{ route('materia.index') }}" class="btn btn-outline-light">
+                            <i class="fas fa-arrow-left"></i> Regresar al listado
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection

@@ -22,4 +22,8 @@ class Materia extends Model
     {
         return $this->hasMany(Profesor::class, 'idasignatura', 'idmateria');
     }
+    public function aulas()
+    {
+        return $this->hasMany(Aula::class, 'idasignatura', 'idmateria');
+    }
 }

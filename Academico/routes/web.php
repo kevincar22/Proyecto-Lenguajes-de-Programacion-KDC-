@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisterController;
 */
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProfesorController;
+use App\Http\Controllers\RegistroController;
 
 
 /*
@@ -38,13 +39,13 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /**Rutas profesor */
-Route::get('/Profesor/nuevo', [ProfesorController::class, 'create'])->name('profesor.create');
-Route::post('/Profesor', [ProfesorController::class, 'store']);
-Route::get('/Profesor', [ProfesorController::class, 'index'])->name('profesor.index');
-Route::get('/Profesor/{Profesor}', [ProfesorController::class, 'show'])->name('profesor.show');
-Route::put('/Profesor/{Profesor}', [ProfesorController::class, 'update'])->name('profesor.update');
-Route::get('/Profesor/{Profesor}/editar', [ProfesorController::class, 'edit'])->name('profesor.edit');
-Route::delete('/Profesor/{id}', [ProfesorController::class, 'destroy'])->name('profesor.destroy');
+Route::get('/Profesores/nuevo', [ProfesorController::class, 'create'])->name('profesor.create');
+Route::post('/Profesores', [ProfesorController::class, 'store']);
+Route::get('/Profesores', [ProfesorController::class, 'index'])->name('profesor.index');
+Route::get('/Profesores/{Profesor}', [ProfesorController::class, 'show'])->name('profesor.show');
+Route::put('/Profesores/{Profesor}', [ProfesorController::class, 'update'])->name('profesor.update');
+Route::get('/Profesores/{Profesor}/editar', [ProfesorController::class, 'edit'])->name('profesor.edit');
+Route::delete('/Profesores/{id}', [ProfesorController::class, 'destroy'])->name('profesor.destroy');
 
 /**Rutas para Aulas */
 Route::get('/Aulas/nuevo', [AulaController::class, 'create'])->name('Aulas.create');

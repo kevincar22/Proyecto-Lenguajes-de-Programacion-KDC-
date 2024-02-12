@@ -30,7 +30,7 @@ class CreateProfesorRequest extends FormRequest{
             'cedula' => ['required','string','max:255',  Rule::unique('profesor')->where(function ($query) {
                 return $query->where('cedula', $this->cedula);
             })],
-            'idasignatura' => ['required','string','max:255'],
+            'idasignatura' => ['required'],
         ];
     }
 
@@ -52,7 +52,7 @@ class CreateProfesorRequest extends FormRequest{
         $Profesor->idasignatura = $this->idasignatura;
         $Profesor->save();
     
-        return redirect()->route('Profesor.index');
+        return redirect()->route('profesor.index');
     
     }
 }
