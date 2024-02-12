@@ -18,7 +18,7 @@ class Profesor extends Model
         'idasignatura',
     ];
 
-    public function aulas()
+    public function aulas() 
     {
         return $this->hasMany(Aula::class, 'idprofesor', 'idprofesor');
     }
