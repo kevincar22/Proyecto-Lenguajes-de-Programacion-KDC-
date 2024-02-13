@@ -1,4 +1,4 @@
-# README
+# README del proyecto de lenguajes de programación
 
 ## Ejecución de la Aplicación PHP con Node.js y SQL server
 
@@ -10,6 +10,7 @@ Antes de comenzar, asegúrate de tener instalado lo siguiente en tu sistema:
 
 - Node.js: [Descarga e instrucciones de instalación](https://nodejs.org/)
 - PHP: [Descarga e instrucciones de instalación](https://www.php.net/)
+- SQL Server: [Descarga e instala sql server](https://www.microsoft.com/es-es/sql-server/sql-server-downloads)
 
 ### Pasos para Ejecutar la Aplicación
 
@@ -26,11 +27,15 @@ git clone https://github.com/kevincar22/Proyecto-Lenguajes-de-Programacion-KDC-.
    Debes ejecutar los siguientes sh para que el proyecto pueda compilarse
 
 ```sh
-php artisan migrate
+composer install
 ```
 
 ```sh
 npm install
+```
+
+```sh
+php artisan migrate
 ```
 
 3. **Levantar el proyecto**
