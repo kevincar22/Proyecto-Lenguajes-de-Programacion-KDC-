@@ -44,7 +44,7 @@ class MateriaController extends Controller
     public function update(UpdateMateriaRequest $request, Materia $materia)
     {
         $request->updateMateria($materia);
-        return redirect()->route('materia.index')->with('success', 'Aula editada con exito');
+        return redirect()->route('materia.index')->with('success', 'Materia editada con exito');
     }
 
     public function trash(Materia $materia)

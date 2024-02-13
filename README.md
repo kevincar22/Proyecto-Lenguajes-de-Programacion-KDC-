@@ -1,5 +1,10 @@
 # README del proyecto de lenguajes de programación
 
+## Integrantes
+- Kevin Carvajal
+- Katiuska Marin
+- Carlos Loja
+
 ## Ejecución de la Aplicación PHP con Node.js y SQL server
 
 Este README describe los pasos necesarios para ejecutar una aplicación PHP utilizando Node.js como servidor.
